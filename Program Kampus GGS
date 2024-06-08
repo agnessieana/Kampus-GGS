@@ -24,8 +24,22 @@ class UnionFind
         }
         return parent[u];
     }
+    public void union(int u, int v) {
+        int rootU = find(u);
+        int rootV = find(v);
 
-
+        if (rootU != rootV) {
+            if (rank[rootU] > rank[rootV]) {
+                parent[rootV] = rootU;
+            } else if (rank[rootU] < rank[rootV]) {
+                parent[rootU] = rootV;
+            } else {
+                parent[rootV] = rootU;
+                rank[rootU]++;
+            }
+        }
+    }
+}
  class Edge implements Comparable<Edge> 
  {
     int u, v, cost;
