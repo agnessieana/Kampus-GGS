@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Collections;
 
 class UnionFind 
 {
@@ -57,6 +58,25 @@ class UnionFind
  }
 public class main 
 {
+public static String kruskal(int n, List<uas.Edge> edges) 
+    {
+        Collections.sort(edges);
+        uas.UnionFind uf = new uas.UnionFind(n);
+        int totalCost = 0;
+        int edgesUsed = 0;
+
+        for (uas.Edge edge : edges) {
+            if (uf.find(edge.u) != uf.find(edge.v)) {
+                uf.union(edge.u, edge.v);
+                totalCost += edge.cost;
+                edgesUsed++;
+                if (edgesUsed == n - 1) {
+                    return Integer.toString(totalCost);
+                }
+            }
+        }
+        return "TIDAK MEMUNGKINKAN";
+    }
     public static void main(String[] args) 
     {
         Scanner scanner = new Scanner(System.in);
