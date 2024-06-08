@@ -1,22 +1,38 @@
-import java.util.*;
+package main;
 
-class UnionFind 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+ class Edge implements Comparable<Edge> 
+ {
+    int u, v, cost;
+    public Edge(int A, int B, int C) 
+    {
+        this.u = A;
+        this.v = B;
+        this.cost = C;
+    }
+    @Override
+    public int compareTo(Edge other) 
+    {
+        return Integer.compare(this.cost, other.cost);
+    }
+ }
+public class main 
 {
-    private int[] parent;
-    private int[] rank;
-
-    public UnionFind(int n) {
-        parent = new int[n];
-        rank = new int[n];
-        for (int i = 0; i < n; i++){
-            parent[i] = i;
-            rank[i] = 0;
+    public static void main(String[] args) 
+    {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int M = scanner.nextInt();
+        
+        List<Edge> bp = new ArrayList<>();
+        for (int i = 0; i < M; i++) 
+        {
+        int A = scanner.nextInt();
+        int B = scanner.nextInt();
+        int C = scanner.nextInt();
+        bp.add(new Edge(A, B, C));
         }
     }
-
-    public int find(int u) {
-        if (parent[u] != u) {
-            parent[u] = find(parent[u]);
-        }
-        return parent[u];
-    }
+}
