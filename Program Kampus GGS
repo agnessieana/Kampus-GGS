@@ -1,19 +1,22 @@
-package utama;
+import java.util.*;
 
-import java.util.Scanner;
-public class perbaan 
+class UnionFind 
 {
-    public static void main(String[] args)
-    {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int M = sc.nextInt();
-        
-        for (int i = 0; i <M; i ++) {
-            int A = sc.nextInt();
-            int B = sc.nextInt ();
-            int C = sc.nextInt();
+    private int[] parent;
+    private int[] rank;
+
+    public UnionFind(int n) {
+        parent = new int[n];
+        rank = new int[n];
+        for (int i = 0; i < n; i++){
+            parent[i] = i;
+            rank[i] = 0;
         }
-        
     }
-}
+
+    public int find(int u) {
+        if (parent[u] != u) {
+            parent[u] = find(parent[u]);
+        }
+        return parent[u];
+    }
