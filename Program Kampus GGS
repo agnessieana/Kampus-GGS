@@ -3,6 +3,29 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+class UnionFind 
+{
+    private int[] parent;
+    private int[] rank;
+
+    public UnionFind(int n) {
+        parent = new int[n];
+        rank = new int[n];
+        for (int i = 0; i < n; i++){
+            parent[i] = i;
+            rank[i] = 0;
+        }
+    }
+
+    public int find(int u) {
+        if (parent[u] != u) {
+            parent[u] = find(parent[u]);
+        }
+        return parent[u];
+    }
+
+
  class Edge implements Comparable<Edge> 
  {
     int u, v, cost;
